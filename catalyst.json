@@ -1,0 +1,12 @@
+{
+  "functions": {
+    "targets": [
+      "file_operations"
+    ],
+    "ignore": [],
+    "source": "functions"
+  },
+  "client": {
+    "source": "client"
+  }
+}
