@@ -36,7 +36,7 @@ app.get('/getFileDetails', async (req, res) => {
 app.post('/uploadFile', async (req, res) => {
 	try {
 		const app = catalyst.initialize(req);
-		await req.files.data.mv(`${__dirname}/uploads/${req.files.data.name}`);
+		await req.files.data.mv(`/tmp/${req.files.data.name}`);
 		await app.filestore().folder(FOLDER_ID).uploadFile({
 			code: fs.createReadStream(`${__dirname}/uploads/${req.files.data.name}`),
 			name: req.files.data.name
@@ -74,9 +74,9 @@ app.put('/updateFile/:id', async (req, res) => {
 	try {
 		const app = catalyst.initialize(req);
 		await app.filestore().folder(FOLDER_ID).deleteFile(req.params.id);
-		await req.files.data.mv(`${__dirname}/uploads/${req.files.data.name}`);
+		await req.files.data.mv(`/tmp/${req.files.data.name}`);
 		await app.filestore().folder(FOLDER_ID).uploadFile({
-			code: fs.createReadStream(`${__dirname}/uploads/${req.files.data.name}`),
+			code: fs.createReadStream(`/tmp/${req.files.data.name}`),
 			name: req.files.data.name
 		});
 		res.status(200).send({
