@@ -38,7 +38,7 @@ app.post('/uploadFile', async (req, res) => {
 		const app = catalyst.initialize(req);
 		await req.files.data.mv(`/tmp/${req.files.data.name}`);
 		await app.filestore().folder(FOLDER_ID).uploadFile({
-			code: fs.createReadStream(`${__dirname}/uploads/${req.files.data.name}`),
+			code: fs.createReadStream(`/tmp/${req.files.data.name}`),
 			name: req.files.data.name
 		});
 		res.status(200).send({
